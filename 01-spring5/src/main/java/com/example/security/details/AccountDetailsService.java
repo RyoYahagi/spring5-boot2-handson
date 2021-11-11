@@ -1,16 +1,17 @@
 package com.example.security.details;
 
-import com.example.persistence.entity.Account;
-import com.example.persistence.repository.AccountRepository;
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.example.persistence.entity.Account;
+import com.example.persistence.repository.AccountRepository;
 
 // TODO 4-17 ビジネスロジッククラスであることを示すアノテーションを付加する
-
+@Service
 // TODO 4-18 UserDetailsServiceインタフェースを実装していることを確認する（変更不要）
 public class AccountDetailsService implements UserDetailsService {
 
@@ -28,6 +29,6 @@ public class AccountDetailsService implements UserDetailsService {
         Account account = accountOptional.orElseThrow(() -> new UsernameNotFoundException("user not found"));
         // TODO 4-19 AccountDetailsをnewしてreturnする（コンストラクタにAccountを渡す）
 
-        return null;
+        return new AccountDetails(account);
     }
 }

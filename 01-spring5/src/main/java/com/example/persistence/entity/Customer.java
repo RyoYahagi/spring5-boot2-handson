@@ -1,8 +1,8 @@
 package com.example.persistence.entity;
 
-import org.springframework.data.annotation.Id;
-
 import java.time.LocalDate;
+
+import org.springframework.data.annotation.Id;
 
 /**
  * DBのcustomerテーブルに対応したエンティティクラス
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class Customer {
 
     // TODO 1-06 主キーであることを示すアノテーションを付加する
-
+	@Id
     private Integer id;
 
     private String firstName;

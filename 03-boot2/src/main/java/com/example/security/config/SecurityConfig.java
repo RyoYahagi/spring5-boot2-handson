@@ -1,7 +1,7 @@
 package com.example.security.config;
 
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 // TODO 5-11 @ComponentScanアノテーションのみ削除する
-@ComponentScan(basePackages = "com.example.security.details")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -25,10 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll();
         // TODO 6-03 Basic認証を有効化する
-
+        http.httpBasic();
         http.authorizeRequests()
                 // TODO 6-04 Actuatorの認可設定を追加する
-
+        		.requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ACTUATOR")
                 .mvcMatchers("/insert*").hasRole("ADMIN")
                 .anyRequest().authenticated();
         http.logout()

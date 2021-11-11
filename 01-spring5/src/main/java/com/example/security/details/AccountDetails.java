@@ -1,12 +1,13 @@
 package com.example.security.details;
 
-import com.example.persistence.entity.Account;
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
+import com.example.persistence.entity.Account;
 
 /**
  * Accountを保持するUserDetails実装クラス
@@ -32,19 +33,19 @@ public class AccountDetails implements UserDetails {
     @Override
     public String getUsername() {
         // TODO 4-14 accountのemailを返す
-        return null;
+        return account.getName();
     }
 
     @Override
     public String getPassword() {
         // TODO 4-15 accountのpasswordを返す
-        return null;
+        return account.getPassword();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO 4-16 authoritiesフィールドを返す
-        return null;
+        return authorities;
     }
 
     @Override

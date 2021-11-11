@@ -1,23 +1,24 @@
 package com.example.persistence.repository.impl;
 
-import com.example.persistence.entity.Account;
-import com.example.persistence.repository.AccountRepository;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Optional;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Optional;
+import com.example.persistence.entity.Account;
+import com.example.persistence.repository.AccountRepository;
 
 /**
  * AccountRepository実装クラス。
  * Spring Data JDBCを使わず、NamedParameterJdbcTemplateを直接利用しています。
  */
 // TODO 4-10 リポジトリクラスであることを示すアノテーションを付加する
-
+@Repository
 public class AccountRepositoryImpl implements AccountRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
